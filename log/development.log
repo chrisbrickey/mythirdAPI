@@ -26,3 +26,50 @@ Migrating to CreateItems (20170419033659)
             FROM sqlite_temp_master
             WHERE name='index_items_on_todo_id' AND type='index'
 [0m
+Started GET "/" for ::1 at 2017-04-19 14:33:27 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Rails::WelcomeController#index as HTML
+  Parameters: {"internal"=>true}
+  Rendering /Users/chrisbrickey/.rvm/gems/ruby-2.4.0/gems/railties-5.0.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/chrisbrickey/.rvm/gems/ruby-2.4.0/gems/railties-5.0.2/lib/rails/templates/rails/welcome/index.html.erb (3.5ms)
+Completed 200 OK in 13ms (Views: 9.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/todos" for ::1 at 2017-04-19 14:37:17 -0700
+Processing by TodosController#index as */*
+  [1m[36mTodo Load (0.6ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+Completed 200 OK in 8ms (Views: 1.1ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/todos" for ::1 at 2017-04-19 14:38:42 -0700
+Processing by TodosController#create as HTML
+  Parameters: {"title"=>"Mozart", "created_by"=>"1", "todo"=>{"title"=>"Mozart", "created_by"=>"1"}}
+Unpermitted parameter: todo
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (2.5ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["title", "Mozart"], ["created_by", "1"], ["created_at", 2017-04-19 21:38:42 UTC], ["updated_at", 2017-04-19 21:38:42 UTC]]
+  [1m[35m (2.7ms)[0m  [1m[36mcommit transaction[0m
+Completed 201 Created in 11ms (Views: 0.5ms | ActiveRecord: 5.5ms)
+
+
+Started PUT "/todos/1" for ::1 at 2017-04-19 14:39:04 -0700
+Processing by TodosController#update as HTML
+  Parameters: {"title"=>"Beethoven", "id"=>"1", "todo"=>{"title"=>"Beethoven"}}
+  [1m[36mTodo Load (0.2ms)[0m  [1m[34mSELECT  "todos".* FROM "todos" WHERE "todos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Unpermitted parameters: id, todo
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[33mUPDATE "todos" SET "title" = ?, "updated_at" = ? WHERE "todos"."id" = ?[0m  [["title", "Beethoven"], ["updated_at", 2017-04-19 21:39:04 UTC], ["id", 1]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+Completed 204 No Content in 6ms (ActiveRecord: 1.1ms)
+
+
+Started DELETE "/todos/1" for ::1 at 2017-04-19 14:39:26 -0700
+Processing by TodosController#destroy as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mTodo Load (0.1ms)[0m  [1m[34mSELECT  "todos".* FROM "todos" WHERE "todos"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mItem Load (0.5ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."todo_id" = ?[0m  [["todo_id", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[31mDELETE FROM "todos" WHERE "todos"."id" = ?[0m  [["id", 1]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+Completed 204 No Content in 23ms (ActiveRecord: 1.8ms)
+
+

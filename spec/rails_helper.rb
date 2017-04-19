@@ -1,3 +1,6 @@
+#!!!I need to comment-out "the support directory auto-loading" but I don't know which part of the code that is
+
+
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
@@ -39,9 +42,14 @@ Shoulda::Matchers.configure do |config|
   end
 end
 
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+
 #[...]
-RSpec.configure do |config|
+RSpec.configuration do |config|
   #[...]
+
+  config.include RequestSpecHelper, type: :request
+
   #add 'FactoryGirl' methods (FactoryGirl is a gem to create templates for valid and re-usable objects.)
   config.include FactoryGirl::Syntax::Methods
 
@@ -84,11 +92,11 @@ RSpec.configure do |config|
   # The different available types are documented in the features, such as in
   # https://relishapp.com/rspec/rspec-rails/docs
   #!!!!BELOW LINE IS NOT IN THE SAMPLE!!!
-  config.infer_spec_type_from_file_location!
+  # config.infer_spec_type_from_file_location!
 
   # Filter lines from Rails gems in backtraces.
   #!!!!BELOW LINE IS NOT IN THE SAMPLE!!!
-  config.filter_rails_from_backtrace!
+  # config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 end
