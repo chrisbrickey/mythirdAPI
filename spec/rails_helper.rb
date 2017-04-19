@@ -47,7 +47,7 @@ RSpec.configure do |config|
 
   #start by truncating all the tables but then use the faster transaction strategy the rest of the time
   config.before(:suite) do
-    DatabaseCleaner.clean_with(:tructation)
+    DatabaseCleaner.clean_with(:truncation)
     DatabaseCleaner.strategy = :transaction
   end
 
@@ -62,13 +62,13 @@ RSpec.configure do |config|
 
   # Remove this (below) line if you're not using ActiveRecord or ActiveRecord fixtures
   #!!!!BELOW LINE WAS REMOVED BECAUSE NOT IN THE SAMPLE!!!
-  #config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  # config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   #!!!!BELOW LINE WAS REMOVED BECAUSE NOT IN THE SAMPLE!!!
-  #config.use_transactional_fixtures = true
+  # config.use_transactional_fixtures = true
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
