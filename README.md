@@ -10,6 +10,6 @@ This is an API-only Rails 5 app that let's people review and change their To-do 
 * Start server: `rails s`
 
 
-## Tests
+# Tests
 
 This app uses Rspec for testing.
