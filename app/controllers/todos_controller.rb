@@ -1,3 +1,4 @@
+#This controller manages different To Do lists (eg. todos)
 #json_response is a helper method that responds with JSON and HTTP status code; it is defiened in controllers/concerns/response.rb
 
 class TodosController < ApplicationController

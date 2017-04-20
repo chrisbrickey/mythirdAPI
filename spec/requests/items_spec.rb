@@ -1,11 +1,12 @@
 #!!This file is not in a different path than noted by the tutorial!!!
+#!!Rspec is not recognizing the get, put, post delete methods, unclear how to resolve
 require 'rails_helper'
 
 RSpec.describe 'Items API' do
 
   #initialize the test data
   let!(:todo) { create(:todo) }
-  let!(:items) { create_list(:item, todo_id: todo.id) }
+  let!(:items) { create_list(:item, 20, todo_id: todo.id) }
   let(:todo_id) { todo.id }
   let(:id) { items.first.id }
 

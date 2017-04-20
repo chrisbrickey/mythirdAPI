@@ -1,8 +1,8 @@
+#!!Rspec is not recognizing the get, put, post delete methods, unclear how to resolve
 require 'rails_helper'
 
 RSpec.describe 'Todos API', type: :request do
   #initialize test data
-  #!!!instead of create_list, rspec suggests create_session but can't find that anywhere in project
   let!(:todos) { create_list(:todo, 10) }
   let(:todo_id) { todos.first.id }
 
